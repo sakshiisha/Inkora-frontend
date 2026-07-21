@@ -1,0 +1,374 @@
+@import 'tailwindcss';
+
+/* ── Nunito (variable, 400–900) ──────────────────────────────────────────── */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('https://static.figma.com/font/Nunito_wght__1') format('woff2');
+}
+
+/* ── DM Sans (variable, 400–600) ─────────────────────────────────────────── */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('https://static.figma.com/font/DMSans_opsz_wght__1') format('woff2');
+}
+
+@theme {
+  --font-display: 'Nunito', 'Helvetica Rounded', sans-serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+
+  /* Inkwell palette */
+  --color-cream: #FFFBF0;
+  --color-cream-dark: #F5EFE0;
+  --color-ink: #1A1108;
+  --color-ink-mid: #4A4030;
+  --color-ink-light: #8C8070;
+  --color-orange: #FF5500;
+  --color-orange-light: #FF7733;
+  --color-orange-pale: #FFF0E8;
+  --color-yellow: #FFE566;
+  --color-yellow-pale: #FFFBCC;
+  --color-green: #00C896;
+  --color-purple: #9B5DE5;
+  --color-pink: #FF6B9D;
+  --color-card: #FFFFFF;
+  --color-surface: #F7F3EC;
+}
+
+/* ── Global reset & base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #FFFBF0;
+  color: #1A1108;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F5EFE0; }
+::-webkit-scrollbar-thumb { background: #E0D4C0; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #FF5500; }
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50%       { transform: rotate(2deg); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes drawLine {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50%       { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* ── Staggered entry ─────────────────────────────────────────────────────── */
+.fade-up {
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.18s; }
+.delay-3 { animation-delay: 0.28s; }
+.delay-4 { animation-delay: 0.38s; }
+.delay-5 { animation-delay: 0.48s; }
+.delay-6 { animation-delay: 0.60s; }
+
+/* ── Page transition ─────────────────────────────────────────────────────── */
+.page-fade {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.ink-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1.5px solid #EDE8DF;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+  overflow: hidden;
+}
+.ink-card:hover {
+  transform: scale(1.025) translateY(-2px);
+  box-shadow: 0 12px 40px rgba(26,17,8,0.10);
+}
+.ink-card img {
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ink-card:hover img {
+  transform: scale(1.06);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FF5500;
+  color: #FFFFFF;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+  box-shadow: 0 2px 0 rgba(255,85,0,0.3);
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 20px rgba(255,85,0,0.35);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 0 rgba(255,85,0,0.3);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #1A1108;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1.5px solid #EDE8DF;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), border-color 0.15s ease, background 0.15s ease;
+}
+.btn-ghost:hover {
+  transform: scale(1.05);
+  border-color: #1A1108;
+  background: #FFFBF0;
+}
+
+.btn-outline-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #FF5500;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 2px solid #FF5500;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), background 0.15s ease, color 0.15s ease;
+}
+.btn-outline-orange:hover {
+  transform: scale(1.05);
+  background: #FF5500;
+  color: #FFFFFF;
+}
+
+/* ── Badges / stickers ───────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.badge-orange { background: #FF5500; color: #fff; }
+.badge-yellow { background: #FFE566; color: #1A1108; }
+.badge-green  { background: #00C896; color: #fff; }
+.badge-purple { background: #9B5DE5; color: #fff; }
+.badge-pink   { background: #FF6B9D; color: #fff; }
+.badge-surface{ background: #F5EFE0; color: #4A4030; }
+
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 0.72rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transform: rotate(-2deg);
+  letter-spacing: 0.02em;
+}
+.sticker-new      { background: #FF5500; color: #fff; transform: rotate(-3deg); }
+.sticker-trending { background: #FFE566; color: #1A1108; transform: rotate(2deg); }
+.sticker-hot      { background: #FF6B9D; color: #fff; transform: rotate(-1.5deg); }
+
+/* ── Tags ────────────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #F5EFE0;
+  color: #4A4030;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+  cursor: pointer;
+}
+.tag:hover, .tag.active {
+  background: #FF5500;
+  color: #fff;
+  transform: scale(1.06);
+}
+
+/* ── Reading progress ────────────────────────────────────────────────────── */
+.reading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF5500, #FF7733);
+  border-radius: 0 2px 2px 0;
+  z-index: 999;
+  transition: width 0.08s linear;
+}
+
+/* ── Doodle underline ────────────────────────────────────────────────────── */
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+}
+.doodle-underline svg {
+  position: absolute;
+  bottom: -6px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: 10px;
+  stroke: #FF5500;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 0;
+}
+
+/* ── Input ───────────────────────────────────────────────────────────────── */
+.ink-input {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid #EDE8DF;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #1A1108;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ink-input:focus {
+  border-color: #FF5500;
+  box-shadow: 0 0 0 3px rgba(255,85,0,0.12);
+}
+.ink-input::placeholder { color: #A09880; }
+
+/* ── Nav link ────────────────────────────────────────────────────────────── */
+.nav-link {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #4A4030;
+  padding: 4px 2px;
+  position: relative;
+  transition: color 0.15s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #FF5500;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nav-link:hover { color: #1A1108; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+.nav-link.active { color: #1A1108; font-weight: 600; }
+
+/* ── Squiggle divider ────────────────────────────────────────────────────── */
+.squiggle {
+  width: 100%;
+  height: 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 8'%3E%3Cpath d='M0,4 C30,0 60,8 90,4 C120,0 150,8 180,4 C210,0 240,8 270,4 C300,0 330,8 360,4 C390,0 420,8 450,4 C480,0 510,8 540,4 C570,0 600,8 630,4 C660,0 690,8 720,4 C750,0 780,8 810,4 C840,0 870,8 900,4 C930,0 960,8 990,4 C1020,0 1050,8 1080,4 C1110,0 1140,8 1170,4 C1190,1 1200,4 1200,4' stroke='%23FF5500' stroke-width='2.5' fill='none' stroke-linecap='round' opacity='0.35'/%3E%3C/svg%3E") repeat-x center;
+  margin: 1.5rem 0;
+}
+
+/* ── Floating doodle blobs (hero bg) ─────────────────────────────────────── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Editor ──────────────────────────────────────────────────────────────── */
+.editor-area {
+  width: 100%;
+  min-height: 60vh;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #1A1108;
+}
+.editor-area::placeholder { color: #B0A898; }
