@@ -55,7 +55,7 @@ export default function Signup() {
       <div className="flex items-center justify-center p-8">
         <form onSubmit={handleSubmit} className="w-full max-w-sm">
           <div className="flex gap-1 mb-8 bg-surface rounded-full p-1 w-fit">
-            <span className="px-5 py-2 rounded-full bg-white font-semibold text-sm shadow">Sign up</span>
+            <Link to="/signup" className="px-5 py-2 rounded-full bg-white font-semibold text-sm shadow">Sign up</Link>
             <Link to="/login" className="px-5 py-2 rounded-full text-sm text-ink-mid">Log in</Link>
           </div>
 
