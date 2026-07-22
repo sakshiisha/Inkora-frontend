@@ -43,7 +43,41 @@ export default function Explore() {
   )
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-14">
+    <div className="relative max-w-6xl mx-auto px-6 py-14 overflow-hidden">
+      {/* Floating stars */}
+      <svg
+        className="floating-star star-1"
+        style={{ top: '2%', right: '8%', width: 26, height: 26 }}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#FF5500"
+        strokeWidth="1.5"
+      >
+        <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+      </svg>
+
+      <svg
+        className="floating-star star-2"
+        style={{ top: '18%', right: '2%', width: 16, height: 16 }}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#9B5DE5"
+        strokeWidth="1.5"
+      >
+        <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+      </svg>
+
+      <svg
+        className="floating-star star-3"
+        style={{ top: '8%', left: '3%', width: 20, height: 20 }}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#FFE566"
+        strokeWidth="1.5"
+      >
+        <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+      </svg>
+
       <div className="fade-up mb-10">
         <span className="sticker sticker-trending mb-4 inline-flex">↑ Explore</span>
         <h1 className="font-display font-extrabold text-5xl md:text-6xl text-ink mb-3">

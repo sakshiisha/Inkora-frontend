@@ -124,7 +124,30 @@ export default function WriteBlog() {
   }
 
   return (
-    <div>
+    <div className="relative overflow-hidden">
+      {/* Floating stars */}
+      <svg
+        className="floating-star star-1"
+        style={{ top: '2%', right: '6%', width: 22, height: 22 }}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#FF5500"
+        strokeWidth="1.5"
+      >
+        <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+      </svg>
+
+      <svg
+        className="floating-star star-2"
+        style={{ top: '12%', right: '1%', width: 14, height: 14 }}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#9B5DE5"
+        strokeWidth="1.5"
+      >
+        <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+      </svg>
+
       {/* Top bar: category / word count / actions */}
       <div className="border-b border-[#EDE8DF] px-6 py-4 flex items-center justify-between">
         <select
