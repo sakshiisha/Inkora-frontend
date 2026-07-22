@@ -2,7 +2,7 @@ export default function SearchBar({ value, onChange }) {
   return (
     <div className="relative">
       <svg
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-light pointer-events-none"
+        className="absolute left-1 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-light pointer-events-none"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

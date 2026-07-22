@@ -29,9 +29,9 @@ export default function Login() {
       <div className="hidden md:flex flex-col justify-center bg-ink text-white p-16">
         <div className="flex items-center gap-2 mb-12">
           <span className="text-2xl">🍂</span>
-          <span className="font-display font-extrabold text-xl">Inkwell</span>
+          <span className="font-display font-extrabold text-xl">Inkora</span>
         </div>
-        <p className="text-orange font-bold text-sm mb-2 tracking-wide">WHY WRITERS CHOOSE INKWELL</p>
+        <p className="text-orange font-bold text-sm mb-2 tracking-wide">WHY WRITERS CHOOSE INKORA</p>
         <h2 className="font-display font-extrabold text-4xl mb-8 leading-tight">
           Write once.<br />Be read <span className="text-orange">everywhere.</span>
         </h2>

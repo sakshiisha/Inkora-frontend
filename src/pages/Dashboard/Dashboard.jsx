@@ -92,22 +92,25 @@ export default function Dashboard() {
       {!loading && posts.length > 0 && (
         <div className="ink-card divide-y divide-[#EDE8DF]">
           {posts.map((post) => (
-            <div key={post.id} className="flex items-center justify-between p-5">
-              <div>
-                <p className="font-semibold text-ink">{post.title}</p>
+            <div key={post.id} className="flex items-center justify-between p-5 flex-wrap gap-3">
+              <div className="min-w-0">
+                <p className="font-semibold text-ink truncate">{post.title}</p>
                 <p className="text-sm text-ink-light">{post.readTime}</p>
               </div>
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center flex-wrap">
                 <span className="badge badge-surface">{post.category}</span>
                 <span className={`badge ${post.status === 'published' ? 'badge-green' : 'badge-yellow'}`}>
                   {post.status}
                 </span>
-                <Link to={`/blog/${post.id}`} className="text-orange text-sm font-semibold">
+                <Link
+                  to={`/blog/${post.id}`}
+                  className="text-orange text-sm font-semibold whitespace-nowrap"
+                >
                   View →
                 </Link>
                 <button
                   onClick={() => setConfirmDeleteId(post.id)}
-                  className="text-red-500 text-sm font-semibold hover:text-red-600"
+                  className="text-red-500 text-sm font-semibold hover:text-red-600 whitespace-nowrap"
                 >
                   Delete
                 </button>

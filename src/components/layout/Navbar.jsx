@@ -27,7 +27,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
           <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
             <span className="text-2xl">🍂</span>
-            <span className="font-display font-extrabold text-xl text-ink">Inkwell</span>
+            <span className="font-display font-extrabold text-xl text-ink">Inkora</span>
           </Link>
 
           {/* Desktop nav */}

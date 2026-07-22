@@ -96,7 +96,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg text-ink-mid mb-8 max-w-xl mx-auto">
-            Inkwell is the no-fuss place to write, read, and discover ideas that actually
+            Inkora is the no-fuss place to write, read, and discover ideas that actually
             matter — straight from real people, not algorithms.
           </p>
 
