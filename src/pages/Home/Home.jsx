@@ -1,26 +1,45 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import FeaturedBlog from '../../components/blog/FeaturedBlog'
 import BlogCard from '../../components/blog/BlogCard'
 import CategoryCard from '../../components/blog/CategoryCard'
 import SearchBar from '../../components/blog/SearchBar'
-import { POSTS } from '../../data/posts'
+import Loader from '../../components/common/Loader'
+import { blogService } from '../../services/blogService'
 
 export default function Home() {
   const [category, setCategory] = useState('All')
   const [query, setQuery] = useState('')
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  const featured = POSTS.find((p) => p.featured)
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        setLoading(true)
+        const data = await blogService.getAll()
+        setPosts(data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPosts()
+  }, [])
+
+  const featured = posts[0] // most recent published post as featured
 
   const filtered = useMemo(() => {
-    return POSTS.filter((p) => {
+    return posts.filter((p) => {
       const matchesCat = category === 'All' || p.category === category
       const matchesQuery =
         p.title.toLowerCase().includes(query.toLowerCase()) ||
-        p.author.toLowerCase().includes(query.toLowerCase())
+        (p.User?.name || '').toLowerCase().includes(query.toLowerCase())
       return matchesCat && matchesQuery
     })
-  }, [category, query])
+  }, [category, query, posts])
 
   return (
     <div>
@@ -32,7 +51,6 @@ export default function Home() {
         <div className="relative max-w-3xl mx-auto fade-up">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="sticker sticker-new">✦ New platform</span>
-            <span className="text-sm text-ink-mid">Join 28,000+ writers sharing their work</span>
           </div>
 
           <h1 className="font-display font-extrabold text-5xl md:text-6xl leading-tight text-ink mb-6">
@@ -55,29 +73,38 @@ export default function Home() {
         </div>
       </section>
 
-      <FeaturedBlog post={featured} />
+      {loading && <Loader label="Loading posts..." />}
+      {error && <p className="text-red-500 text-center py-10">{error}</p>}
+
+      {!loading && !error && featured && <FeaturedBlog post={featured} />}
 
       {/* Latest stories */}
-      <section className="max-w-6xl mx-auto px-6 mt-16">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display font-extrabold text-2xl text-ink">Latest stories</h2>
-          <button className="btn-outline-orange">See all →</button>
-        </div>
+      {!loading && !error && (
+        <section className="max-w-6xl mx-auto px-6 mt-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-display font-extrabold text-2xl text-ink">Latest stories</h2>
+            <Link to="/explore" className="btn-outline-orange">See all →</Link>
+          </div>
 
-        <div className="mb-6">
-          <CategoryCard active={category} onSelect={setCategory} />
-        </div>
+          <div className="mb-6">
+            <CategoryCard active={category} onSelect={setCategory} />
+          </div>
 
-        <div className="mb-8 max-w-md">
-          <SearchBar value={query} onChange={setQuery} />
-        </div>
+          <div className="mb-8 max-w-md">
+            <SearchBar value={query} onChange={setQuery} />
+          </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-      </section>
+          {filtered.length > 0 ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-ink-mid py-10">No posts yet. Be the first to write one!</p>
+          )}
+        </section>
+      )}
 
       {/* CTA */}
       <section className="bg-orange mt-20 py-20 text-center text-white">

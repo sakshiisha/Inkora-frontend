@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <header className="border-b border-[#EDE8DF] bg-[#FFFBF0]/90 backdrop-blur sticky top-0 z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <Link to="" className="flex items-center gap-2">
+        <Link to="#" className="flex items-center gap-2">
           <span className="text-2xl">🍂</span>
           <span className="font-display font-extrabold text-xl text-ink">Inkwell</span>
         </Link>
