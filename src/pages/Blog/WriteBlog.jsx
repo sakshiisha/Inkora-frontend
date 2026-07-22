@@ -20,7 +20,7 @@ export default function WriteBlog() {
 
   const readTime = Math.max(1, Math.round(words / 200))
 
-  // ---- Gallery image upload ----
+  // ---- Gallery image upload (compressed before saving) ----
   const handlePickImage = () => fileInputRef.current?.click()
 
   const handleImageChange = (e) => {
@@ -37,10 +37,26 @@ export default function WriteBlog() {
     }
 
     setError('')
+
     const reader = new FileReader()
     reader.onload = () => {
-      setImage(reader.result)
-      setImageName(file.name)
+      const img = new Image()
+      img.onload = () => {
+        // Resize to max width 800px, compress to JPEG ~70% quality
+        const canvas = document.createElement('canvas')
+        const maxWidth = 800
+        const scale = Math.min(1, maxWidth / img.width)
+        canvas.width = img.width * scale
+        canvas.height = img.height * scale
+
+        const ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7)
+        setImage(compressedBase64)
+        setImageName(file.name)
+      }
+      img.src = reader.result
     }
     reader.readAsDataURL(file)
   }
