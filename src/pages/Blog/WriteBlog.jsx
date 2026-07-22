@@ -42,9 +42,9 @@ export default function WriteBlog() {
     reader.onload = () => {
       const img = new Image()
       img.onload = () => {
-        // Resize to max width 800px, compress to JPEG ~70% quality
+        // Resize to max width 500px, compress to JPEG ~65% quality
         const canvas = document.createElement('canvas')
-        const maxWidth = 800
+        const maxWidth = 500
         const scale = Math.min(1, maxWidth / img.width)
         canvas.width = img.width * scale
         canvas.height = img.height * scale
@@ -52,7 +52,7 @@ export default function WriteBlog() {
         const ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
-        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7)
+        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.65)
         setImage(compressedBase64)
         setImageName(file.name)
       }
@@ -130,7 +130,7 @@ export default function WriteBlog() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="ink-input w-auto py-2"
+          className="ink-input w-auto max-w-[140px] !py-1.5 !px-3 !text-sm"
         >
           {CATEGORIES.map((c) => (
             <option key={c} value={c}>{c}</option>
@@ -228,15 +228,15 @@ export default function WriteBlog() {
           <button
             type="button"
             onClick={handlePickImage}
-            className="w-full border-2 border-dashed border-[#EDE8DF] rounded-xl py-8 mb-6 flex flex-col items-center justify-center gap-2 text-ink-light hover:bg-[#F5F0E6] transition"
+            className="w-full border-2 border-dashed border-[#EDE8DF] rounded-xl py-6 mb-6 flex flex-col items-center justify-center gap-2 text-ink-light hover:bg-[#F5F0E6] transition"
           >
-            <span className="text-2xl">🖼️</span>
+            <span className="text-xl">🖼️</span>
             <span className="text-sm">Tap to upload a photo from your gallery</span>
             <span className="text-xs text-ink-light/70">JPG, PNG · up to 5MB</span>
           </button>
         ) : (
           <div className="relative mb-6">
-            <img src={image} alt="preview" className="w-full h-48 object-cover rounded-xl" />
+            <img src={image} alt="preview" className="w-full h-32 object-contain rounded-xl bg-[#F5F0E6]" />
             <div className="absolute top-2 right-2 flex gap-2">
               <button
                 type="button"
