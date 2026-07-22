@@ -1,26 +1,36 @@
+import { Search } from "lucide-react";
+
 export default function SearchBar({ value, onChange }) {
   return (
-    <div className="relative">
-      <svg
-        className="absolute left-1 top-1/2 -translate-y-1/2 w-5 h-5 text-ink-light pointer-events-none"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    <div className="relative w-full max-w-xl">
+      <Search
+        size={18}
         strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
+        className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"
+      />
+
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search posts or authors..."
-        className="ink-input pl-8"
+        className="
+          w-full
+          h-12
+          rounded-2xl
+          border border-[#E5DED2]
+          bg-white
+          pl-10
+          pr-5
+          text-[15px]
+          placeholder:text-[#9C958C]
+          focus:outline-none
+          focus:border-[#FF6B00]
+          focus:ring-2
+          focus:ring-orange-100
+          transition
+        "
       />
     </div>
-  )
+  );
 }
