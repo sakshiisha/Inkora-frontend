@@ -372,3 +372,13 @@ body {
   color: #1A1108;
 }
 .editor-area::placeholder { color: #B0A898; }
+
+/* ── Floating stars (hero decoration) ────────────────────────────────────── */
+.floating-star {
+  position: absolute;
+  pointer-events: none;
+  animation: float 5s ease-in-out infinite;
+}
+.star-1 { animation-delay: 0s; }
+.star-2 { animation-delay: 1.2s; }
+.star-3 { animation-delay: 2.4s; }

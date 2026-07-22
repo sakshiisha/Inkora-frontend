@@ -48,6 +48,40 @@ export default function Home() {
         <div className="blob w-72 h-72 bg-orange-pale -top-10 -left-10" />
         <div className="blob w-72 h-72 bg-yellow-pale top-20 right-0" />
 
+        {/* Floating stars */}
+        <svg
+          className="floating-star star-1"
+          style={{ top: '15%', right: '12%', width: 28, height: 28 }}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#FF5500"
+          strokeWidth="1.5"
+        >
+          <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+        </svg>
+
+        <svg
+          className="floating-star star-2"
+          style={{ top: '35%', right: '5%', width: 18, height: 18 }}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#9B5DE5"
+          strokeWidth="1.5"
+        >
+          <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+        </svg>
+
+        <svg
+          className="floating-star star-3"
+          style={{ bottom: '18%', right: '18%', width: 22, height: 22 }}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#FFE566"
+          strokeWidth="1.5"
+        >
+          <path d="M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" />
+        </svg>
+
         <div className="relative max-w-3xl mx-auto fade-up">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="sticker sticker-new">✦ New platform</span>
