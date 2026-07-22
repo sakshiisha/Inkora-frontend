@@ -19,7 +19,7 @@ export default function SearchBar({ value, onChange }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search posts or authors..."
-        className="ink-input pl-11"
+        className="ink-input pl-14"
       />
     </div>
   )
