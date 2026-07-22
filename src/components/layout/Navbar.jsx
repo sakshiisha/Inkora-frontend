@@ -25,7 +25,7 @@ export default function Navbar() {
     <>
       <header className="border-b border-[#EDE8DF] bg-[#FFFBF0]/90 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
-          <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
+          <Link to="#" className="flex items-center gap-2" onClick={closeMenu}>
             <span className="text-2xl">🍂</span>
             <span className="font-display font-extrabold text-xl text-ink">Inkora</span>
           </Link>
@@ -54,7 +54,7 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link to="/login" className="btn-ghost">Sign in</Link>
+                <Link to="/signup" className="btn-ghost">Sign in</Link>
                 <Link to="/signup" className="btn-primary">Get started</Link>
               </>
             )}
